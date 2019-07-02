@@ -2,8 +2,8 @@ package XML::Ligero;
 use strict;
 
 use Exporter 5.57 'import';
-our @EXPORT = qw(xpath);
-our $VERSION = 0.1;
+our @EXPORT_OK = qw(xpath);
+our $VERSION = 0.11;
 
 sub xpath{
   local $_ = shift;
