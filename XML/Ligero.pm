@@ -60,7 +60,7 @@ sub xpath{
           $s = 8;
           $cwd =~ s!/[^/]+$!!;
         }}}
-    ($s,$p,$e) = substr($_,$p)=~/^(\s*[^\s<][^<]+)/ ? (7,$p+length$1) : (8,$p)           if $s == 6;
+    ($s,$p,$e) = substr($_,$p)=~/^(\s*[^\s<][^<]*)/ ? (7,$p+length$1) : (8,$p)           if $s == 6;
     push @x,$1 and $s-=6                                                                 if $s == 7;
     ($s,$p,$e) = substr($_,$p)=~/^(\s*)(?:<|$)/ ? (1,$p+length$1) : (0,$p,"error at $p") if $s == 8}
   $e = 'parsing error: tag '.$t[$#t]->{fqn}." not closed at position $p" if scalar @t;
