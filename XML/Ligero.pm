@@ -3,7 +3,7 @@ use strict;
 
 use Exporter 5.57 'import';
 our @EXPORT_OK = qw(xpath);
-our $VERSION = 0.11;
+our $VERSION = 0.12;
 
 sub xpath{
   local $_ = shift;
