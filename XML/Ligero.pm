@@ -11,7 +11,11 @@ sub xpath{
   #my $qr_va = qr/(?:"[^"<]*"|'[^'<]*')/;
   my $qr_va = qr/(?:"[^"]*"|'[^']*')/;
   my $qr_at = qr/(?:$qr_na\s*=\s*$qr_va\s*)/;
+  #<!DOCTYPE\s*(?:[a-zA-Z_](?:[-.\w]*:?[-.\w]+)?)\s*(?:SYSTEM\s*"[^"]*"|PUBLIC\s*"[^"]*"\s*"[^"]*")?(?:\s*\[[^]]*\])?\s*>
+  my $qr_dt = qr/<!DOCTYPE\s*$qr_na\s*(?:SYSTEM\s*"[^"]*"|PUBLIC\s*"[^"]*"\s*"[^"]*")?(?:\s*\[[^]]*\])?\s*>/;
+  #^(?:((?:[a-zA-Z_](?:[-.\w]*:?[-.\w]+)?))\s*((?:(?:[a-zA-Z_](?:[-.\w]*:?[-.\w]+)?)\s*=\s*(?:"[^"]*"|'[^']*')\s*)*)(/?)|/((?:[a-zA-Z_](?:[-.\w]*:?[-.\w]+)?))\s*|!--(.*)--|\?(.*)\?)$
   my $qr_ta = qr%^(?:($qr_na)\s*($qr_at*)(/?)|/($qr_na)\s*|!--(.*)--|\?(.*)\?)$%s;
+  s/$qr_dt//;
   my ($s,$p,$cwd,@t,$e,$i,$t,@x) = (1,0,''); #state, position, curWorkDir, openedTags, error, index, currentTag, xPath
   while($s && length substr $_,$p){
     ($s,$p,$e) = 60==ord substr($_,$p,1)?(2,$p+1):(0,$p,"< expected at $p")              if $s == 1;
