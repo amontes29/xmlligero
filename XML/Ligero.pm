@@ -3,7 +3,7 @@ use strict;
 
 use Exporter 5.57 'import';
 our @EXPORT_OK = qw(xpath);
-our $VERSION = 0.12;
+our $VERSION = 0.13;
 
 sub xpath{
   local $_ = shift;
@@ -68,7 +68,7 @@ sub xpath{
     push @x,$1 and $s-=6                                                                 if $s == 7;
     ($s,$p,$e) = substr($_,$p)=~/^(\s*)(?:<|$)/ ? (1,$p+length$1) : (0,$p,"error at $p") if $s == 8}
   $e = 'parsing error: tag '.$t[$#t]->{fqn}." not closed at position $p" if scalar @t;
-  $e ? $e : \@x;
+  $e ? $e : bless \@x;
 }
 
 1;
