@@ -1,0 +1,36 @@
+internal DTD                                                                       +-------------------------------------------------------+---------+
+   +------------------------------------------------+                              |<?xml version="1.0" standalone="yes" ?>                | Example:|
+   |<!DOCTYPE root_element [                        |                              |                                                       +---------+
+   |                                                |                              |<!--open the DOCTYPE declaration -                               |
+   |Document Type Definition (DTD):                 |                              |  the open square bracket indicates an internal DTD-->           |
+   |  elements/attributes/entities/notations/       |                              |<!DOCTYPE foo [                                                  |
+   |  processing instructions/comments/PE references|                              |                                                                 |
+   |                                                |                              |<!--define the internal DTD-->                                   |
+   |]>                                              |                              |  <!ELEMENT foo (#PCDATA)>                                       |
+   +------------------------------------------------+                              |                                                                 |
+                                                                                   |<!--close the DOCTYPE declaration-->                             |
+                                                                                   |]>                                                               |
++---------------------------------------------------------------------+            |                                                                 |
+external PRIVATE DTD  <!DOCTYPE root_element SYSTEM "DTD_location">   |            |<foo>Hello World.</foo>                                          |
+                       <!DOCTYPE document SYSTEM "subjects.dtd">      |            +-----------------------------------------------------------------+
+                                                                      +---------|
+external PUBLIC DTD  <!DOCTYPE root_element PUBLIC "DTD_name" "DTD_location">   |--------------------------------------------------+
+                     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">    |
+                                        +--------------------------------------------------------------------------------+---------+
+                                        |<!--inform the XML processor                                                    | Example:|     
+                                        |  that an external DTD is referenced-->                                         +---------+     
+                                        |<?xml version="1.0" standalone="no" ?>                                                    |     
+                                        |                                                                                          |     
+                                        |<!--define the location of the                                                            |     
+EXAMPLE: external PRIVATE DTD           |  external DTD using a relative URL address - the open square                             |
+  combined with internal DTD            |  bracket indicates an internal DTD-->                                                    |
+                                        |<!DOCTYPE document SYSTEM "subjects.dtd" [                                                |     
+                                        |                                                                                          |     
+                                        |<!--the markup in the internal DTD                                                        |     
+                                        |  takes precedence over the external DTD-->                                               |     
+                                        |  <!ATTLIST assessment assessment_type (exam | assignment | prac)>                        |     
+                                        |  <!ELEMENT results (#PCDATA)>                                                            |     
+                                        |                                                                                          |     
+                                        |<!--close the DOCTYPE declaration-->                                                      |     
+                                        |]>                                                                                        |     
+                                        +------------------------------------------------------------------------------------------+     
